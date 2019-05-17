@@ -360,6 +360,7 @@ def get_proctored_exam_results(course_key, features):
     course_enrollment = get_enrollments_for_course(exam_attempts)
     return [extract_details(exam_attempt, features, course_enrollment) for exam_attempt in exam_attempts]
 
+
 def get_enrollments_for_course(exam_attempts):
     """
      Returns all enrollments for a given course
@@ -368,9 +369,11 @@ def get_enrollments_for_course(exam_attempts):
         users = []
         for e in exam_attempts:
             users.append(e['user_id'])
-        enrollments = {c.user_id: c.mode for c in CourseEnrollment.objects.filter
-        (course_id= CourseKey.from_string(exam_attempts[0]['course_id']), user_id__in=users)}
+
+        enrollments = {c.user_id: c.mode for c in CourseEnrollment.objects.filter(
+            course_id=CourseKey.from_string(exam_attempts[0]['course_id']), user_id__in=users)}
         return enrollments
+
 
 def coupon_codes_features(features, coupons_list, course_id):
     """
