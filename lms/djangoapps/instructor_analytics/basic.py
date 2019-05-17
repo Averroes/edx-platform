@@ -363,7 +363,7 @@ def get_proctored_exam_results(course_key, features):
 
 def get_enrollments_for_course(exam_attempts):
     """
-     Returns all enrollments for a given course
+     Returns all enrollments from a list of attempts
      """
     if exam_attempts:
         users = []
