@@ -252,7 +252,7 @@ class TestAnalyticsBasic(ModuleStoreTestCase):
             'Suspicious Comments',
             'Rules Violation Count',
             'Rules Violation Comments',
-            'user_id'
+            'track'
         ]
 
         proctored_exam_id = create_exam(self.course_key, 'Test Content', 'Test Exam', 1)
@@ -272,7 +272,7 @@ class TestAnalyticsBasic(ModuleStoreTestCase):
         proctored_exam_attempts = get_proctored_exam_results(self.course_key, query_features)
         self.assertEqual(len(proctored_exam_attempts), 3)
         for proctored_exam_attempt in proctored_exam_attempts:
-            self.assertEqual(set(proctored_exam_attempt.keys()), set(query_features))
+            self.assertEqual(set(proctored_exam_attempt.keys()), set(query_features) )
 
 
 @patch.dict('django.conf.settings.FEATURES', {'ENABLE_PAID_COURSE_REGISTRATION': True})
